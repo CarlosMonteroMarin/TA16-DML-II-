@@ -1,0 +1,21 @@
+SELECT apellidos FROM empleados;
+SELECT DISTINCT apellidos FROM empleados;
+SELECT * FROM empleados WHERE apellidos="Smith";
+SELECT * FROM empleados WHERE apellidos="Smith" or apellidos="Rogers";
+SELECT * FROM empleados WHERE departamento=14;
+SELECT * FROM empleados WHERE departamento=37 or departamento=77;
+SELECT * FROM empleados WHERE apellidos like 'P%';
+SELECT SUM(presupuesto) AS PRESUPUESTO_TOTAL FROM departamentos;
+SELECT departamentos.NOMBRE, empleados.NOMBRE, empleados.APELLIDOS FROM departamentos, empleados WHERE (SELECT count(departamento) FROM empleados);
+SELECT empleados.DNI, empleados.NOMBRE, empleados.APELLIDOS, departamentos.CODIGO AS COD_DEPARTAMENTO, departamentos.NOMBRE AS DEPARTAMENTO, departamentos.PRESUPUESTO FROM empleados, departamentos;
+SELECT e.NOMBRE, e.APELLIDOS, d.NOMBRE AS DEPARTAMENTO, d.PRESUPUESTO FROM empleados AS e, departamentos AS d;
+SELECT empleados.NOMBRE, empleados.APELLIDOS, departamentos.NOMBRE, departamentos.PRESUPUESTO FROM empleados, departamentos WHERE departamentos.PRESUPUESTO > 60000;
+SELECT * FROM departamentos WHERE PRESUPUESTO > (SELECT AVG(PRESUPUESTO) FROM departamentos);
+SELECT NOMBRE FROM departamentos WHERE (SELECT count(CODIGO) FROM empleados WHERE DEPARTAMENTO = departamentos.CODIGO)> 2 GROUP BY departamentos.NOMBRE;
+INSERT INTO departamentos (codigo, nombre, presupuesto) VALUES (11,"Calidad",40000);INSERT INTO empleados (dni, nombre, apellidos, departamento) VALUES (89267109,"Esther","Vázquez",11);
+UPDATE departamentos SET presupuesto=presupuesto*0.9;
+UPDATE empleados SET DEPARTAMENTO = 14 WHERE DEPARTAMENTO = 77;
+DELETE empleados FROM empleados WHERE DEPARTAMENTO = 14;
+DELETE empleados FROM empleados, departamentos WHERE departamentos.PRESUPUESTO>60000; 
+DELETE empleados FROM empleados;
+

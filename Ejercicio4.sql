@@ -1,0 +1,10 @@
+SELECT nombre FROM peliculas;
+SELECT DISTINCT calificacionedad FROM peliculas;
+SELECT * FROM peliculas WHERE calificacionedad IS NULL;
+SELECT * FROM salas WHERE pelicula IS NULL;
+SELECT * FROM salas LEFT JOIN peliculas ON salas.pelicula = peliculas.codigo;
+SELECT * FROM salas RIGHT JOIN peliculas ON salas.pelicula = peliculas.codigo;
+SELECT peliculas.nombre FROM salas RIGHT JOIN peliculas ON salas.pelicula = peliculas.codigo WHERE salas.pelicula IS NULL;
+INSERT INTO peliculas VALUES (10, 'Uno, Dos, Tres', '+7');
+UPDATE peliculas SET calificacionedad = 'no recomendables para menores de 13 años' WHERE calificacionedad IS NULL;
+DELETE FROM salas WHERE pelicula IN (SELECT codigo FROM peliculas WHERE calificacionedad = 'G');  
